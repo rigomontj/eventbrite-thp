@@ -1,0 +1,7 @@
+<h1> La liste des super évènements </h1>
+
+<% @events.each do |evt| %>
+<p><%= evt.name %>
+<%= link_to 'o', event_path(evt) %></p>
+<br/>
+<% end %>

@@ -1,0 +1,25 @@
+<h1> Votre nouvel évènement ! </h1>
+
+<h2> L'organisateur du super évènement </h2>
+<p><%= User.find(@event.creator_id).name %></p>
+
+<h2> La description </h2>
+<p><%= @event.description %></p>
+
+<h2> La date </h2>
+<p><%= @event.date %></p>
+
+<h2> Le lieu </h2>
+<p><%= @event.place %></p>
+
+<h2> La durée </h2>
+<p><%= @event.duration %></p>
+
+<h2> Les invités </h2>
+<p><% @event.attendees.each do |att| %></p>
+<%= att.name %>
+<% end %>
+<!-- < % unless @event.attendees.find(current_user.id) %> -->
+<h2> Toi aussi, participe !</h2>
+<%= link_to 'Hop là', subscribe_path(@event) %>
+<!-- < % end %> -->
