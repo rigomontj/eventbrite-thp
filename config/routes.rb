@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'events#index'
+
   get 'events/new'
 
   get 'sessions/new'
@@ -7,12 +9,17 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
-  get  '/signup',  to: 'users#new'
+  post '/events/:id/invite', to: 'events#invfriend'
+
+
+  get '/events/:id/invite', to: 'events#invite',as: :invite
+
+  get  '/signup',  to: 'users#new', as: :signup
   post '/signup',  to: 'users#create'
 
-  get    '/login',   to: 'sessions#new'
+  get    '/login',   to: 'sessions#new', as: :login
   post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
+  delete '/logout',  to: 'sessions#destroy', as: :logout
 
   get '/events/:id/subscribe', to: "events#subscribe", as: :subscribe
 

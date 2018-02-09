@@ -1,0 +1,12 @@
+<table>
+<% @users.each do |usr| %>
+<tr>
+<td> | <%= usr.name %> 
+</td>
+<td> | <%= usr.email %>
+</td>
+<td> .  <%= link_to "þ", user_path(usr) %>
+</td>
+</tr>
+<% end %>
+</table>

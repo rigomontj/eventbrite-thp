@@ -1,0 +1,11 @@
+<h1>Even Brighter</h1>
+<div> <% unless logged_in? %>
+      <%= link_to "LOGIN", login_path %>
+      <%= link_to "SIGNUP", signup_path %>
+      <% else %>
+      <%= link_to "My Profile", eval("user_path(#{current_user.id})") %>
+      <%= link_to "lOGOUT", logout_path, data: { confirm: 'Are you sure?' }, :method => :delete %>
+      <%= link_to "New Event", new_event_path %> 
+      <% end %> </div>
+<div> <%= link_to "All Events", root_path %> |
+      <%= link_to "All Users", users_path %> | </div>

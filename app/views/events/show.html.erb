@@ -19,7 +19,9 @@
 <p><% @event.attendees.each do |att| %></p>
 <%= att.name %>
 <% end %>
-<!-- < % unless @event.attendees.find(current_user.id) %> -->
+<% unless @event.attendees.include?(current_user) %>
 <h2> Toi aussi, participe !</h2>
 <%= link_to 'Hop là', subscribe_path(@event) %>
-<!-- < % end %> -->
+<% end %>
+<h2> Ramenes tes potes! </h2>
+<%= link_to "Comme ca!", invite_path %>

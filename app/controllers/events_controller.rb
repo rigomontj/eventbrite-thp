@@ -23,11 +23,22 @@ class EventsController < ApplicationController
 
   def subscribe
     @event = Event.find(params[:id])
-    unless (@event.attendees.find(current_user.id))
+    unless @event.attendees.include?(current_user)
       @event.attendees << current_user
       flash[:success] = "Tu es bien inscrit à #{@event.name}"
     end
     redirect_to @event
+  end
+
+  def invite
+    @event = Event.find(params[:id])
+  end
+
+skip_before_action :verify_authenticity_token, :only => [:invfriend]
+
+  def invfriend
+    @event = Event.find(params[:id])
+    @event.attendees << User.find(params[:friend])
   end
 
 private
